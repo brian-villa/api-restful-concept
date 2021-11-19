@@ -38,8 +38,33 @@ async function post(req, res) {
     }) // devolvendo info a API
 }
 
+async function put(req, res) {
+    const { id } = req.params
+
+    const product = await ProductsModel.findOneAndUpdate({ _id: id}, req.body, { new: true })
+
+    res.send({
+        message: "success",
+        product,
+    })
+
+    /* const product = await ProductsModel.findOne({ _id: id })
+
+    await product.updateOne(req.body)
+
+    res.send({
+        message: 'success',
+        product,
+    })
+    
+    TRECHO DE CÓDIGO QUE ALTERA O CONTEUDO JSON DE UM PRODUTO MAS RETORNA O PRODUTO NO POSTMAN COM O FORMATO ANTERIOR À ALTERAÇÃO
+    
+    */
+}
+
 module.exports = {
     get,
     post,
+    put,
 
 }
