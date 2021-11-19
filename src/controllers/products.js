@@ -1,3 +1,4 @@
+const { response } = require('express')
 const ProductsModel = require('../models/products')
 
 async function get(req, res) {
@@ -62,9 +63,25 @@ async function put(req, res) {
     */
 }
 
+async function remove(req, res) {
+    const { id } = req.params
+
+    const remove = await ProductsModel.deleteOne({ _id: id })
+
+    let message = "success"
+
+    if(!remove.ok) {
+        let message = "error"
+    }
+
+    res.send({
+        message,
+    })
+}
 module.exports = {
     get,
     post,
     put,
+    remove,
 
 }
