@@ -35,7 +35,7 @@ async function post(req, res) {
     product.save()
     
     res.send({
-        message: 'sucess'
+        message: "success",
     }) // devolvendo info a API
 }
 
